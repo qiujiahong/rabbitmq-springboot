@@ -27,6 +27,7 @@ public class TopicJsonSender {
             Message message = MessageBuilder
                     .withBody(orderJson.getBytes())
                     .setContentType(MessageProperties.CONTENT_TYPE_JSON)
+                    .setExpiration("5000")
                     .build();
             this.rabbitTemplate.convertAndSend("event.test", message);
         } catch (JsonProcessingException e) {
