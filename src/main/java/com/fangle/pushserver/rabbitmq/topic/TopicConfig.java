@@ -11,7 +11,8 @@ import org.springframework.context.annotation.Configuration;
 public class TopicConfig {
     final static String QUEUE_NAME = "log";
     final static String QUEUE_NAME2 = "log.all";
-    final static String QUEUE_NAME3 = "log.all.error";
+    final static String QUEUE_NAME3 = "event.parking";
+
     final static String EXCHANGE_NAME = "pmsEventExchange"; //交换器名称
     @Bean
     public Queue queuetopic() {
@@ -25,6 +26,8 @@ public class TopicConfig {
     public Queue queuetopic3() {
         return new Queue(TopicConfig.QUEUE_NAME3);
     }
+
+
     // 配置交换器
     @Bean
     TopicExchange topicExchange() {
@@ -43,6 +46,7 @@ public class TopicConfig {
     // 绑定队列到交换器，并设置路由键（log.*.error）
     @Bean
     Binding bindingtopicExchangeQueue3(Queue queuetopic3, TopicExchange topicExchange) {
-        return BindingBuilder.bind(queuetopic3).to(topicExchange).with("log.all.error");
+        return BindingBuilder.bind(queuetopic3).to(topicExchange).with("event.parking.*");
     }
+
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class TopicReceiver2 {
-    @RabbitHandler
+//    @RabbitHandler
     @RabbitListener(queues = "log.all")
     public void process(String msg) {
         log.info("log.* 消费消息：" + msg);

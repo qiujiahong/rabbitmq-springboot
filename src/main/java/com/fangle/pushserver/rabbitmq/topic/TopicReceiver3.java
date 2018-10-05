@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class TopicReceiver3 {
-    @RabbitHandler
-    @RabbitListener(queues = "log.all.error")
+//    @RabbitHandler
+    @RabbitListener(queues = "event.parking")
     public void process(String msg) {
         log.info("log.*.error 消费消息：" + msg);
     }
